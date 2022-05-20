@@ -21,6 +21,7 @@ function grab_elements(){
    total_score.style.height = "50px"
    total_score.style.width = "50px" 
    total_score.style.textAlign = "center"
+   add_reset_button();
    lunch_script();
 }
 
@@ -29,7 +30,8 @@ function grab_elements(){
 function lunch_script(){
    start_button.addEventListener("mouseover", () => {
          start_button.style.backgroundColor = "green";
-         start_button.style.cursor = "crosshair"});
+         start_button.style.cursor = "crosshair";
+         h2_message.innerHTML = "Press S ";});
    start_button.addEventListener("mouseout", () => {
          start_button.style.backgroundColor = "#88ff88"});
    start_button.onclick = play;
@@ -43,7 +45,9 @@ function play(){
    starting_position = start_button.getBoundingClientRect().left;
    // 3 possible outcomes      
    document.addEventListener("mousemove", check_if_cheating)
-   danger_zone.forEach(zone => zone.addEventListener("mousemove", game_over));
+   danger_zone.forEach(zone => {
+      zone.addEventListener("mousemove", game_over);
+      zone.style.backgroundColor = "grey";});
    end_button.addEventListener("mouseover", win);
 }
 
@@ -99,6 +103,7 @@ function game_over_style(){
 function win_style(){
    total_score.style.fontSize = "32px"
    total_score.style.backgroundColor = "#88ff88"
+   danger_zone.forEach(zone => zone.style.backgroundColor = "#88ff88")
    total_score.style.height = "50px"
    document.body.style.cursor = "default"
    h2_message.style.backgroundColor = "#88ff88"
@@ -111,6 +116,34 @@ function play_style(){
    document.body.style.cursor = "crosshair"
    h2_message.style.backgroundColor = "white";
    start_button.addEventListener("mouseover", () => {
+      danger_zone.forEach(zone=> {
+         zone.style.backgroundColor = "#eeeeee";
+         h2_message.style.backgroundColor = "white";
+      });
+   });
+}
+
+
+// Add Reset Score Button
+function add_reset_button(){
+   const para = document.createElement("button");
+   para.innerText = "Reset button";
+   para.style.height = "50px";
+   para.style.width = "50px";
+   para.style.margin = "-35px auto";
+   para.style.display = "flex";
+   para.addEventListener("mouseover", ()=> {
+      para.style.fontWeight = "bolder";
+      para.style.backgroundColor = "#8888ff"   
+   });
+   para.addEventListener("mouseout", ()=> {
+      para.style.fontWeight = "normal";
+      para.style.backgroundColor = "lightgrey"
+   });
+   document.body.appendChild(para);
+   para.addEventListener("click", ()=> {
+      score = 0;
+      total_score.innerHTML = 0;
       danger_zone.forEach(zone=> {
          zone.style.backgroundColor = "#eeeeee";
          h2_message.style.backgroundColor = "white";
