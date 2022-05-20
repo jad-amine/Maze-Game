@@ -46,3 +46,38 @@ function play(){
    danger_zone.forEach(zone => zone.addEventListener("mousemove", game_over));
    end_button.addEventListener("mouseover", win);
 }
+
+
+// 1. Cheating Area
+function check_if_cheating(XY){
+   if(XY.pageX < starting_position){
+      document.removeEventListener("mousemove", check_if_cheating);
+      game_over();
+   }
+}
+
+// 2. Game over section
+function game_over(){
+   game_over_style();
+   score -= 10;
+   total_score.innerHTML = score;
+   document.removeEventListener("mousemove", check_if_cheating);
+   danger_zone.forEach(zone => {
+      zone.removeEventListener("mousemove", game_over)
+      document.body.style.cursor = "default"
+      end_button.removeEventListener("mouseover", win);
+   })
+}
+
+// 3. Win Section
+function win(){
+   win_style();
+   score += 5;
+   h2_message.innerHTML = "YOU Win !!!"
+   total_score.innerHTML = score
+   end_button.removeEventListener("mouseover", win);
+   document.removeEventListener("mousemove", check_if_cheating);
+   danger_zone.forEach(zone => {
+      zone.removeEventListener("mousemove", game_over)
+   });
+}
