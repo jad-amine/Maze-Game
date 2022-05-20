@@ -81,3 +81,39 @@ function win(){
       zone.removeEventListener("mousemove", game_over)
    });
 }
+
+
+
+//Game over page style
+function game_over_style(){
+   h2_message.innerHTML = "YOU LOST !!!"
+   h2_message.style.backgroundColor = "red"
+   total_score.style.fontSize = "32px"
+   total_score.style.backgroundColor = "red"
+   danger_zone.forEach(zone => {
+      zone.style.backgroundColor = "red";
+   }) 
+}
+
+// Win dispay style
+function win_style(){
+   total_score.style.fontSize = "32px"
+   total_score.style.backgroundColor = "#88ff88"
+   total_score.style.height = "50px"
+   document.body.style.cursor = "default"
+   h2_message.style.backgroundColor = "#88ff88"
+}
+
+// Play display style
+function play_style(){
+   total_score.innerHTML = score;
+   total_score.style.backgroundColor = "white"
+   document.body.style.cursor = "crosshair"
+   h2_message.style.backgroundColor = "white";
+   start_button.addEventListener("mouseover", () => {
+      danger_zone.forEach(zone=> {
+         zone.style.backgroundColor = "#eeeeee";
+         h2_message.style.backgroundColor = "white";
+      });
+   });
+}
