@@ -126,22 +126,20 @@ function play_style(){
 
 // Add Reset Score Button
 function add_reset_button(){
-   const para = document.createElement("button");
-   para.innerText = "Reset button";
-   para.style.height = "50px";
-   para.style.width = "50px";
-   para.style.margin = "-35px auto";
-   para.style.display = "flex";
-   para.addEventListener("mouseover", ()=> {
-      para.style.fontWeight = "bolder";
-      para.style.backgroundColor = "#8888ff"   
-   });
-   para.addEventListener("mouseout", ()=> {
-      para.style.fontWeight = "normal";
-      para.style.backgroundColor = "lightgrey"
-   });
-   document.body.appendChild(para);
-   para.addEventListener("click", ()=> {
+   const bttn = document.createElement("button");
+   bttn.innerText = "Reset button";
+   bttn.style.height = "50px";
+   bttn.style.width = "150px";
+   bttn.style.margin = "-35px auto";
+   bttn.style.padding = "15px";
+   bttn.style.paddingLeft = "30px";
+   bttn.style.backgroundColor = "#8888ff" 
+   bttn.style.fontWeight = "bolder"
+   bttn.style.borderRadius = "10px"
+   bttn.style.display = "flex";
+   bttn.style.back
+   document.body.appendChild(bttn);
+   bttn.addEventListener("click", ()=> {
       score = 0;
       total_score.innerHTML = 0;
       danger_zone.forEach(zone=> {
